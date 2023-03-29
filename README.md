@@ -8,6 +8,7 @@ This repository showcases a Fullstack Application using the MERN Stack.
 ### Notes:
 - the application is a Fullstack web application making use of all **CRUD** operations
 - the technology stack used to build the application is the **MERN Stack**, which stands for MongoDB, Express.js, React.js, and Node.js
+---
 - **MongoDB** is a NoSQL database that provides a flexible schema design and scalability for data storage
 - **Express.js** is a popular backend web framework for Node.js, used for building APIs and web applications
 - **React.js** is a popular frontend JavaScript library for building user interfaces
