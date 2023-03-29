@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
+import { FaPlaceOfWorship } from 'react-icons/fa';
 import { MainHeader } from './MainHeader';
 import { NavLinks } from './NavLinks';
 import { SideDrawer } from './SideDrawer';
@@ -34,7 +35,9 @@ export const MainNavigation = (props) => {
         </button>
 
         <h1 className='main-navigation__title'>
-          <Link to='/'>YourPlaces</Link>
+          <Link to='/'>
+            <FaPlaceOfWorship />
+          </Link>
         </h1>
 
         <nav className='main-navigation__header-nav'>

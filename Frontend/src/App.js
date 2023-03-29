@@ -9,6 +9,8 @@ import { AuthUser } from './user/pages/AuthUser';
 import { AuthContext } from './shared/context/auth-context';
 import { useAuth } from './shared/hooks/auth-hook';
 
+import './root-variables.css'
+
 const App = () => {
   const { login, logout, token, userId } = useAuth();
 

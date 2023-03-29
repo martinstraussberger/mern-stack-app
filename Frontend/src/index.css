@@ -10,7 +10,7 @@ html {
 
 body {
   margin: 0;
-  background: #4d4d4d;
+  background: var(--primary);
 }
 
 .slide-in-left-enter {
@@ -39,4 +39,8 @@ body {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+.not-found {
+  color: var(--text-light)
 }

@@ -1,0 +1,26 @@
+:root {
+    --primary: #283441;
+    --secondary-50: #323b4d;
+    --secondary: #23272F;
+    --text-light: #fff;
+    --text-upscale: #f1ecda;
+
+    --violet-50: #c15dcf;
+    --violet-300: #a901f1;
+    --violet-400: #9400d3;
+    --violet-500: #580ba7;
+    --violet-600: #510077;
+
+    --neutral-50: #ccc;
+    --neutral-300: #979797;
+
+    --danger: #d53737;
+    --danger-light: #ff0055;
+    --danger-50: #f34343;
+    --danger-hover: #d62121;
+
+    --white-backdrop: #f8f8f8;
+    --white-backdrop-100: #ebebeb;
+
+    --pearl-backdrop: #ffd1d1;
+}

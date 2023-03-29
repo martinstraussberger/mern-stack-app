@@ -6,7 +6,7 @@ import './UsersList.css';
 export const UsersList = (props) => {
   if (props.items.length === 0) {
     return (
-      <div className='center'>
+      <div className='center not-found'>
         <h2>No users found.</h2>
       </div>
     );
