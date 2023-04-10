@@ -17,7 +17,7 @@ import { AuthContext } from "../../shared/context/auth-context";
 
 import "./AuthUser.css";
 
-export const AuthUser = () => {
+const AuthUser = () => {
   const auth = useContext(AuthContext);
   const [isLoginMode, setIsLoginMode] = useState(true);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
@@ -161,3 +161,5 @@ export const AuthUser = () => {
     </React.Fragment>
   );
 };
+
+export default AuthUser;

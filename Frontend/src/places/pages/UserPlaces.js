@@ -5,7 +5,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { ErrorModal } from "../../shared/components/UIElements/ErrorModal";
 import { LoadingSpinner } from "../../shared/components/UIElements/LoadingSpinner";
 
-export const UserPlaces = () => {
+const UserPlaces = () => {
   const [loadedPlaces, setLoadedPlaces] = useState();
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
 
@@ -43,3 +43,5 @@ export const UserPlaces = () => {
     </React.Fragment>
   );
 };
+
+export default UserPlaces;

@@ -13,7 +13,7 @@ import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/valida
 
 import "./PlaceForm.css";
 
-export const UpdatePlace = () => {
+const UpdatePlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [loadedPlace, setLoadedPlace] = useState();
@@ -135,3 +135,5 @@ export const UpdatePlace = () => {
     </React.Fragment>
   );
 };
+
+export default UpdatePlace;

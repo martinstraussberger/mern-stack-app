@@ -11,7 +11,7 @@ import { useHttpClient } from "../../shared/hooks/http-hook";
 import { AuthContext } from "../../shared/context/auth-context";
 import "./PlaceForm.css";
 
-export const NewPlace = () => {
+const NewPlace = () => {
   const auth = useContext(AuthContext);
   const { isLoading, error, sendRequest, clearError } = useHttpClient();
   const [formState, inputHandler] = useForm(
@@ -99,3 +99,5 @@ export const NewPlace = () => {
     </React.Fragment>
   );
 };
+
+export default NewPlace;
