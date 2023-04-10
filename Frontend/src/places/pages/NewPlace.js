@@ -1,15 +1,15 @@
-import React, { useContext } from 'react';
-import { useHistory } from 'react-router-dom';
-import { Input } from '../../shared/components/FormElements/Input';
-import { Button } from '../../shared/components/FormElements/Button';
-import { ErrorModal } from '../../shared/components/UIElements/ErrorModal';
-import { LoadingSpinner } from '../../shared/components/UIElements/LoadingSpinner';
-import { ImageUpload } from '../../shared/components/FormElements/ImageUpload';
-import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../shared/util/validators';
-import { useForm } from '../../shared/hooks/form-hook';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { AuthContext } from '../../shared/context/auth-context';
-import './PlaceForm.css';
+import React, { useContext } from "react";
+import { useHistory } from "react-router-dom";
+import { Input } from "../../shared/components/FormElements/Input";
+import { Button } from "../../shared/components/FormElements/Button";
+import { ErrorModal } from "../../shared/components/UIElements/ErrorModal";
+import { LoadingSpinner } from "../../shared/components/UIElements/LoadingSpinner";
+import { ImageUpload } from "../../shared/components/FormElements/ImageUpload";
+import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from "../../shared/util/validators";
+import { useForm } from "../../shared/hooks/form-hook";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
+import "./PlaceForm.css";
 
 export const NewPlace = () => {
   const auth = useContext(AuthContext);
@@ -17,15 +17,15 @@ export const NewPlace = () => {
   const [formState, inputHandler] = useForm(
     {
       title: {
-        value: '',
+        value: "",
         isValid: false,
       },
       description: {
-        value: '',
+        value: "",
         isValid: false,
       },
       address: {
-        value: '',
+        value: "",
         isValid: false,
       },
       image: {
@@ -43,15 +43,15 @@ export const NewPlace = () => {
 
     try {
       const formData = new FormData();
-      formData.append('title', formState.inputs.title.value);
-      formData.append('description', formState.inputs.description.value);
-      formData.append('address', formState.inputs.address.value);
-      formData.append('image', formState.inputs.image.value);
-      await sendRequest('http://localhost:5000/api/places', 'POST', formData, {
-        Authorization: 'Bearer ' + auth.token
+      formData.append("title", formState.inputs.title.value);
+      formData.append("description", formState.inputs.description.value);
+      formData.append("address", formState.inputs.address.value);
+      formData.append("image", formState.inputs.image.value);
+      await sendRequest(process.env.REACT_APP_BACKEND_URL + "/places", "POST", formData, {
+        Authorization: "Bearer " + auth.token,
       });
       // Redirect user to a different page
-      browserHistory.push('/');
+      browserHistory.push("/");
     } catch (err) {
       console.log(err);
     }

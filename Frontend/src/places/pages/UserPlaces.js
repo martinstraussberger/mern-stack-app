@@ -1,9 +1,9 @@
-import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
-import { PlaceList } from '../components/PlaceList';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { ErrorModal } from '../../shared/components/UIElements/ErrorModal';
-import { LoadingSpinner } from '../../shared/components/UIElements/LoadingSpinner';
+import React, { useEffect, useState } from "react";
+import { useParams } from "react-router-dom";
+import { PlaceList } from "../components/PlaceList";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { ErrorModal } from "../../shared/components/UIElements/ErrorModal";
+import { LoadingSpinner } from "../../shared/components/UIElements/LoadingSpinner";
 
 export const UserPlaces = () => {
   const [loadedPlaces, setLoadedPlaces] = useState();
@@ -15,7 +15,7 @@ export const UserPlaces = () => {
     const fetchPlaces = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/user/${userID}`
+          `${process.env.REACT_APP_BACKEND_URL}/places/user/${userID}`
         );
         setLoadedPlaces(responseData.places);
       } catch (err) {}
@@ -24,8 +24,10 @@ export const UserPlaces = () => {
   }, [sendRequest, userID]);
 
   const placeDeletedHandler = (deletePlaceID) => {
-    setLoadedPlaces(prevPlaces => prevPlaces.filter(place => place.id !== deletePlaceID))
-  }
+    setLoadedPlaces((prevPlaces) =>
+      prevPlaces.filter((place) => place.id !== deletePlaceID)
+    );
+  };
 
   return (
     <React.Fragment>
@@ -35,7 +37,9 @@ export const UserPlaces = () => {
           <LoadingSpinner />
         </div>
       )}
-      {!isLoading && loadedPlaces && <PlaceList items={loadedPlaces} onDeletePlaces={placeDeletedHandler} />}
+      {!isLoading && loadedPlaces && (
+        <PlaceList items={loadedPlaces} onDeletePlaces={placeDeletedHandler} />
+      )}
     </React.Fragment>
   );
 };

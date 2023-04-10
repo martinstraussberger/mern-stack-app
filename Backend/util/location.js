@@ -1,6 +1,7 @@
-const axios = require('axios');
-const HttpError = require('../models/http-error');
-const API_KEY = 'AIzaSyCvemwIM4Rc17koCSzB9PDLjOIsvXMCZG4';
+const axios = require("axios");
+const HttpError = require("../models/http-error");
+const API_KEY = process.env.GOOGLE_API_KEY;
+// AIzaSyCvemwIM4Rc17koCSzB9PDLjOIsvXMCZG4;
 
 async function getCoordsForAddress(address) {
   const response = await axios.get(
@@ -11,9 +12,9 @@ async function getCoordsForAddress(address) {
 
   const data = response.data;
 
-  if (!data || data.status === 'ZERO_RESULTS') {
+  if (!data || data.status === "ZERO_RESULTS") {
     const error = new HttpError(
-      'Could not find location for the specified address.',
+      "Could not find location for the specified address.",
       422
     );
     throw error;

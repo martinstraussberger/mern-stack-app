@@ -1,21 +1,21 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext } from "react";
 
-import Card from '../../shared/components/UIElements/Card';
-import { Input } from '../../shared/components/FormElements/Input';
-import { Button } from '../../shared/components/FormElements/Button';
-import { useForm } from '../../shared/hooks/form-hook';
-import { ImageUpload } from '../../shared/components/FormElements/ImageUpload';
-import { ErrorModal } from '../../shared/components/UIElements/ErrorModal';
-import { LoadingSpinner } from '../../shared/components/UIElements/LoadingSpinner';
-import { useHttpClient } from '../../shared/hooks/http-hook';
+import Card from "../../shared/components/UIElements/Card";
+import { Input } from "../../shared/components/FormElements/Input";
+import { Button } from "../../shared/components/FormElements/Button";
+import { useForm } from "../../shared/hooks/form-hook";
+import { ImageUpload } from "../../shared/components/FormElements/ImageUpload";
+import { ErrorModal } from "../../shared/components/UIElements/ErrorModal";
+import { LoadingSpinner } from "../../shared/components/UIElements/LoadingSpinner";
+import { useHttpClient } from "../../shared/hooks/http-hook";
 import {
   VALIDATOR_REQUIRE,
   VALIDATOR_MINLENGTH,
   VALIDATOR_EMAIL,
-} from '../../shared/util/validators';
-import { AuthContext } from '../../shared/context/auth-context';
+} from "../../shared/util/validators";
+import { AuthContext } from "../../shared/context/auth-context";
 
-import './AuthUser.css';
+import "./AuthUser.css";
 
 export const AuthUser = () => {
   const auth = useContext(AuthContext);
@@ -25,11 +25,11 @@ export const AuthUser = () => {
   const [formState, inputHandler, setFormData] = useForm(
     {
       email: {
-        value: '',
+        value: "",
         isValid: false,
       },
       password: {
-        value: '',
+        value: "",
         isValid: false,
       },
     },
@@ -51,7 +51,7 @@ export const AuthUser = () => {
         {
           ...formState.inputs,
           name: {
-            value: '',
+            value: "",
             isValid: false,
           },
           image: {
@@ -71,14 +71,14 @@ export const AuthUser = () => {
     if (isLoginMode) {
       try {
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users/login',
-          'POST',
+          process.env.REACT_APP_BACKEND_URL + "/users/login",
+          "POST",
           JSON.stringify({
             email: formState.inputs.email.value,
             password: formState.inputs.password.value,
           }),
           {
-            'Content-Type': 'application/json',
+            "Content-Type": "application/json",
           }
         );
         auth.login(responseData.userId, responseData.token);
@@ -88,13 +88,13 @@ export const AuthUser = () => {
     } else {
       try {
         const formData = new FormData();
-        formData.append('email', formState.inputs.email.value);
-        formData.append('name', formState.inputs.name.value);
-        formData.append('password', formState.inputs.password.value);
-        formData.append('image', formState.inputs.image.value);
+        formData.append("email", formState.inputs.email.value);
+        formData.append("name", formState.inputs.name.value);
+        formData.append("password", formState.inputs.password.value);
+        formData.append("image", formState.inputs.image.value);
         const responseData = await sendRequest(
-          'http://localhost:5000/api/users/signup',
-          'POST',
+          process.env.REACT_APP_BACKEND_URL + "/users/signup",
+          "POST",
           formData
         );
 
@@ -124,7 +124,14 @@ export const AuthUser = () => {
               onInput={inputHandler}
             />
           )}
-          {!isLoginMode && <ImageUpload center id='image' onInput={inputHandler} errorText="Please upload a valid image." />}
+          {!isLoginMode && (
+            <ImageUpload
+              center
+              id='image'
+              onInput={inputHandler}
+              errorText='Please upload a valid image.'
+            />
+          )}
           <Input
             id='email'
             element='input'
@@ -144,11 +151,11 @@ export const AuthUser = () => {
             onInput={inputHandler}
           />
           <Button type='submit' disabled={!formState.isValid}>
-            {isLoginMode ? 'LOGIN' : 'SIGNUP'}
+            {isLoginMode ? "LOGIN" : "SIGNUP"}
           </Button>
         </form>
         <Button inverse onClick={switchModeHandler}>
-          {isLoginMode ? 'SIGNUP' : 'LOGIN'}
+          {isLoginMode ? "SIGNUP" : "LOGIN"}
         </Button>
       </Card>
     </React.Fragment>

@@ -1,17 +1,17 @@
-import React, { useEffect, useState, useContext } from 'react';
-import { useParams, useHistory } from 'react-router-dom';
-import { Input } from '../../shared/components/FormElements/Input';
-import { Button } from '../../shared/components/FormElements/Button';
-import { LoadingSpinner } from '../../shared/components/UIElements/LoadingSpinner';
-import { ErrorModal } from '../../shared/components/UIElements/ErrorModal';
-import Card from '../../shared/components/UIElements/Card';
-import { useHttpClient } from '../../shared/hooks/http-hook';
-import { AuthContext } from '../../shared/context/auth-context';
+import React, { useEffect, useState, useContext } from "react";
+import { useParams, useHistory } from "react-router-dom";
+import { Input } from "../../shared/components/FormElements/Input";
+import { Button } from "../../shared/components/FormElements/Button";
+import { LoadingSpinner } from "../../shared/components/UIElements/LoadingSpinner";
+import { ErrorModal } from "../../shared/components/UIElements/ErrorModal";
+import Card from "../../shared/components/UIElements/Card";
+import { useHttpClient } from "../../shared/hooks/http-hook";
+import { AuthContext } from "../../shared/context/auth-context";
 
-import { useForm } from '../../shared/hooks/form-hook';
-import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from '../../shared/util/validators';
+import { useForm } from "../../shared/hooks/form-hook";
+import { VALIDATOR_REQUIRE, VALIDATOR_MINLENGTH } from "../../shared/util/validators";
 
-import './PlaceForm.css';
+import "./PlaceForm.css";
 
 export const UpdatePlace = () => {
   const auth = useContext(AuthContext);
@@ -24,11 +24,11 @@ export const UpdatePlace = () => {
   const [formState, inputHandler, setFormData] = useForm(
     {
       title: {
-        value: '',
+        value: "",
         isValid: false,
       },
       description: {
-        value: '',
+        value: "",
         isValid: false,
       },
     },
@@ -39,7 +39,7 @@ export const UpdatePlace = () => {
     const fetchPlace = async () => {
       try {
         const responseData = await sendRequest(
-          `http://localhost:5000/api/places/${placeID}`
+          `${process.env.REACT_APP_BACKEND_URL}/places/${placeID}`
         );
         setLoadedPlace(responseData.place);
         setFormData(
@@ -66,18 +66,18 @@ export const UpdatePlace = () => {
     event.preventDefault();
     try {
       await sendRequest(
-        `http://localhost:5000/api/places/${placeID}`,
-        'PATCH',
+        `${process.env.REACT_APP_BACKEND_URL}/places/${placeID}`,
+        "PATCH",
         JSON.stringify({
           title: formState.inputs.title.value,
           description: formState.inputs.description.value,
         }),
         {
-          'Content-Type': 'application/json',
-          Authorization: 'Bearer ' + auth.token,
+          "Content-Type": "application/json",
+          Authorization: "Bearer " + auth.token,
         }
       );
-      browserHistory.push('/' + auth.userId + '/places');
+      browserHistory.push("/" + auth.userId + "/places");
     } catch (err) {
       console.log(err);
     }

@@ -11,8 +11,7 @@ const HttpError = require("./models/http-error");
 
 const app = express();
 
-const url =
-  "mongodb+srv://martinstra:<password>@cluster0.ijnag8g.mongodb.net/<db>?retryWrites=true&w=majority";
+const url = `mongodb+srv://${process.env.DB_USER}:${process.env.DB_PASSWORD}@cluster0.ijnag8g.mongodb.net/${process.env.DB_USER}?retryWrites=true&w=majority`;
 
 app.use(bodyParser.json());
 
